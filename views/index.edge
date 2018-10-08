@@ -1,0 +1,79 @@
+@layout('layouts.app')
+
+@section('content')
+
+<header class="masthead" style="background-image: url('img/banner.png')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>FWCDC</h1>
+          <span class="subheading">First Ward Child Develoment Center</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      @each(post in posts)
+
+      <div class="post-preview">
+        
+      <a href="/post/{{post._id}}">
+        
+          <h2 class="post-title">
+            {{post.title}}
+          </h2>
+        
+          <h3 class="post-subtitle">
+            {{post.description}}
+          </h3>
+        
+        </a>
+        <p class="post-meta">Posted by
+          <a href="#">
+            {{ post.author.username }}
+          </a>
+          on {{ post.createdAt.toDateString() }}
+        </p>
+      
+      </div>
+
+      @endeach
+      <hr>
+      <!-- Pager -->
+      <div class="clearfix">
+        <!--<a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  @each(date in dates)
+    <div class="row row-striped">
+        <div class="col-lg-2 col-md-2 col-sm-12 text-center">
+          <h1 class="display-4"><span class="badge badge-secondary">{{date.date}}</span></h1>
+          <h2>{{date.month}}</h2>
+        </div>
+        <div class="col-10">
+          <h3 class="text-uppercase"><strong>{{date.title}}</strong></h3>
+          <ul class="list-inline">
+              <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>{{date.day}}</li>
+            <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{date.time}} </li>
+            <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i>{{date.class}}</li>
+          </ul>
+          <p>{{date.description}}</p>
+        </div>
+      </div>
+  @endeach
+</div>
+
+<hr>
+
+@endsection
